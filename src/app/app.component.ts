@@ -1,8 +1,7 @@
 import { Component, VERSION } from '@angular/core';
 import { MouseEvent, AgmMap } from '@agm/core';
 import { TravelMarker, TravelMarkerOptions, TravelData, TravelEvents, EventType } from 'travel-marker';
-import locationData from './loc.json';
-
+var locationData=[[12.9122267,77.6337536]]
 declare var google: any;
 
 @Component({
