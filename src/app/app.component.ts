@@ -1,7 +1,7 @@
 import { Component, VERSION } from '@angular/core';
 import { MouseEvent, AgmMap } from '@agm/core';
 import { TravelMarker, TravelMarkerOptions, TravelData, TravelEvents, EventType } from 'travel-marker';
-var locationData=[[12.9122267,77.6337536]]
+var locationData=[[12.916540,77.651950],[12.908322,77.605078],[12.913083,77.610155],[12.9165757,77.61011630000007]]
 declare var google: any;
 
 @Component({
@@ -10,12 +10,11 @@ declare var google: any;
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  {
-  name = 'Angular ' + VERSION.major;
  // google maps zoom level
  zoom: number = 15;
  // initial center position for the map
- lat: number = 77.6244807;
- lng: number = 12.9351929;
+ lat: number = 12.927923;
+  lng: number = 77.627106;
 
  map: any;
  line: any;
@@ -33,13 +32,6 @@ export class AppComponent  {
    // this.initEvents();
  }
 
-/**
-*                  IMPORTANT NOTICE
-*  Google stopped its FREE TIER for Directions service.
-*  Hence the below route calculation will not work unless you provide your own key with directions api enabled
-*  
-*  Meanwhile, for the sake of demo, precalculated value will be used
-*/
 
  // get locations from direction service
  calcRoute() {
@@ -49,8 +41,8 @@ export class AppComponent  {
      map: this.map
    });
    
-   const start = new google.maps.LatLng(51.513237, -0.099102);
-   const end = new google.maps.LatLng(51.514786, -0.080799);
+   const start = new google.maps.LatLng(12.916540,77.651950);
+   const end = new google.maps.LatLng(12.9165757,77.61011630000007);
    const request = {
        origin:start,
        destination:end,
@@ -76,13 +68,6 @@ export class AppComponent  {
    });
  }
 
-/**
-*                  IMPORTANT NOTICE
-*  Google stopped its FREE TIER for Directions service.
-*  Hence the below route calculation will not work unless you provide your own key with directions api enabled
-*  
-*  Meanwhile, for the sake of demo, precalculated value will be used
-*/
 
  // mock directions api
  mockDirections() {
@@ -94,8 +79,8 @@ export class AppComponent  {
    });
    locationArray.forEach(l => this.line.getPath().push(l));
  
-   const start = new google.maps.LatLng(51.513237, -0.099102);
-   const end = new google.maps.LatLng(51.514786, -0.080799);
+   const start = new google.maps.LatLng(12.916540,77.651950);
+   const end = new google.maps.LatLng(12.9165757,77.61011630000007);
 
    const startMarker = new google.maps.Marker({position: start, map: this.map, label: 'A'});
    const endMarker = new google.maps.Marker({position: end, map: this.map, label: 'B'});
@@ -113,7 +98,7 @@ export class AppComponent  {
      interval: 10, // default 10, marker refresh time
      speedMultiplier: this.speedMultiplier,
      markerOptions: { 
-       title: 'Travel Marker',
+       title: 'Ready Assist',
        animation: google.maps.Animation.DROP,
        icon: {
          url: 'https://i.imgur.com/eTYW75M.png',
