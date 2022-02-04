@@ -1,6 +1,7 @@
 import { Component, VERSION } from '@angular/core';
 import { MouseEvent, AgmMap } from '@agm/core';
 import { TravelMarker, TravelMarkerOptions, TravelData, TravelEvents, EventType } from 'travel-marker';
+import locationData from './loc.json';
 
 declare var google: any;
 
@@ -13,7 +14,6 @@ export class AppComponent  {
   name = 'Angular ' + VERSION.major;
  // google maps zoom level
  zoom: number = 15;
- locationData:any=[];
  // initial center position for the map
  lat: number = 51.512802;
  lng: number = -0.091324;
