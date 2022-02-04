@@ -87,8 +87,8 @@ export class AppComponent  {
    const start = new google.maps.LatLng(is_custom?this.service_area_lat:12.916540,is_custom?this.service_area_lng:77.651950);
    const end = new google.maps.LatLng(is_custom?this.service_drop_area_lat:12.9165757,is_custom?this.service_drop_area_lng:77.61011630000007);
 
-   const startMarker = new google.maps.Marker({position: start, map: this.map, label: 'A'});
-   const endMarker = new google.maps.Marker({position: end, map: this.map, label: 'B'});
+   const startMarker = new google.maps.Marker({position: start, map: this.map, label: 'Service Area - A'});
+   const endMarker = new google.maps.Marker({position: end, map: this.map, label: 'Drop Area - B'});
    this.initRoute();
  }
 
