@@ -14,6 +14,7 @@ export class AppComponent  {
   service_area_lng:any='77.70947265625';
   service_drop_area_lat:any='12.97194';
   service_drop_area_lng:any='77.59369';
+  customer_data:any={name:'Mukund','mobile':'8677010031','email':'mukund720@gmail.com'}
 
  // google maps zoom level
  zoom: number = 15;
