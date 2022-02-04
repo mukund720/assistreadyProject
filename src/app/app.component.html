@@ -1,4 +1,16 @@
 
+<div class="service_div">
+<input type="text" [(ngModel)]="service_area_lat" placeholder="Enter Service Lat">
+
+<input type="text" [(ngModel)]="service_area_lng" placeholder="Enter Service Lng">
+<hr>
+<input type="text" [(ngModel)]="service_drop_area_lat" placeholder="Enter Drop Area Lat">
+
+<input type="text" [(ngModel)]="service_drop_area_lng" placeholder="Enter Drop Area Lng">
+<hr>
+
+<button (click)="setCordinate()">Set Cordinates</button>
+</div>
 <agm-map 
   [latitude]="lat"
   [longitude]="lng"
@@ -6,6 +18,7 @@
 </agm-map>
 
   <div class="controls">
+
     <button (click)="play()">Play</button>
     <button (click)="pause()">Pause</button>
     <button (click)="reset()">Reset</button>
