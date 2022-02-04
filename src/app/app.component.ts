@@ -10,6 +10,11 @@ declare var google: any;
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  {
+  service_area_lat:any='13.200342178344727';
+  service_area_lng:any='77.70947265625';
+  service_drop_area_lat:any='12.97194';
+  service_drop_area_lng:any='77.59369';
+
  // google maps zoom level
  zoom: number = 15;
  // initial center position for the map
@@ -28,7 +33,7 @@ export class AppComponent  {
    console.log(map);
    this.map = map;
    // this.calcRoute();
-   this.mockDirections();
+   this.mockDirections(false);
    // this.initEvents();
  }
 
@@ -70,7 +75,7 @@ export class AppComponent  {
 
 
  // mock directions api
- mockDirections() {
+ mockDirections(is_custom) {
    const locationArray = locationData.map(l => new google.maps.LatLng(l[0], l[1]));
    this.line = new google.maps.Polyline({
      strokeOpacity: 0.5,
@@ -79,8 +84,8 @@ export class AppComponent  {
    });
    locationArray.forEach(l => this.line.getPath().push(l));
  
-   const start = new google.maps.LatLng(12.916540,77.651950);
-   const end = new google.maps.LatLng(12.9165757,77.61011630000007);
+   const start = new google.maps.LatLng(is_custom?this.service_area_lat:12.916540,is_custom?this.service_area_lng:77.651950);
+   const end = new google.maps.LatLng(is_custom?this.service_drop_area_lat:12.9165757,is_custom?this.service_drop_area_lng:77.61011630000007);
 
    const startMarker = new google.maps.Marker({position: start, map: this.map, label: 'A'});
    const endMarker = new google.maps.Marker({position: end, map: this.map, label: 'B'});
@@ -164,5 +169,12 @@ export class AppComponent  {
    this.marker.event.onEvent((event: EventType, data: TravelData) => {
      console.log(event, data);
    });
+ }
+ setCordinate()
+ {
+   alert('feature not enabled yet');
+   return false;
+   this.reset();
+   this.mockDirections(true);
  }
 }
