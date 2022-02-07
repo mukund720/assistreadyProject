@@ -36,6 +36,8 @@ export class AppComponent  {
        console.log(`Positon: ${pos.lng} ${pos.lat}`);
        this.lat=pos.lat;
        this.lng=pos.lng
+       this.service_area_lat=pos.lat
+       this.service_area_lng=pos.lng
     });
 
    console.log(map);
