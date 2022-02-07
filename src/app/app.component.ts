@@ -49,6 +49,8 @@ let new_long = this.lng + coef / Math.cos(this.lat * 0.018);
 this.dest_lat=new_lat
 this.dest_lng=new_long;
 locationData=[[this.lat,this.lng],[this.dest_lat,this.dest_lng]]
+this.service_drop_area_lat=this.dest_lat
+this.service_drop_area_lng=this.dest_lng
 }
 
 updateMap()
