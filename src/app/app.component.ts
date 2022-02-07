@@ -1,7 +1,7 @@
 import { Component, VERSION } from '@angular/core';
 import { MouseEvent, AgmMap } from '@agm/core';
 import { TravelMarker, TravelMarkerOptions, TravelData, TravelEvents, EventType } from 'travel-marker';
-var locationData=[[12.916540,77.651950],[12.908322,77.605078],[12.913083,77.610155],[12.9165757,77.61011630000007]]
+var locationData=[]
 declare var google: any;
 
 @Component({
@@ -48,6 +48,7 @@ let new_lat = this.lat + coef;
 let new_long = this.lng + coef / Math.cos(this.lat * 0.018);
 this.dest_lat=new_lat
 this.dest_lng=new_long;
+locationData=[[this.lat,this.lng],[this.dest_lat,this.dest_lng]]
 }
 
 updateMap()
