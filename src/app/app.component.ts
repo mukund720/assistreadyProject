@@ -71,6 +71,7 @@ setInterval(function(){
 }, 30000)
 }
  onMapReady(map: any) {
+   console.log(map);
     this.updateMap();
    console.log(map);
    this.map = map;
