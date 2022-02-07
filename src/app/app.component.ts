@@ -65,7 +65,7 @@ updateMap()
     });
 this.getNext5KM();
 setInterval(function(){
-  this.onMapReady()
+  this.mockDirections(false)
 }, 30000)
 }
  onMapReady(map: any) {
