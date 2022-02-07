@@ -31,6 +31,13 @@ export class AppComponent  {
  speedMultiplier = 1;
 
  onMapReady(map: any) {
+  this.getPosition().then(pos=>
+    {
+       console.log(`Positon: ${pos.lng} ${pos.lat}`);
+       this.lat=pos.lat;
+       this.lng=pos.lng
+    });
+
    console.log(map);
    this.map = map;
    // this.calcRoute();
@@ -177,5 +184,19 @@ export class AppComponent  {
    return false;
    this.reset();
    this.mockDirections(true);
+ }
+ getPosition(): Promise<any>
+ {
+   return new Promise((resolve, reject) => {
+
+     navigator.geolocation.getCurrentPosition(resp => {
+
+         resolve({lng: resp.coords.longitude, lat: resp.coords.latitude});
+       },
+       err => {
+         reject(err);
+       });
+   });
+
  }
 }
