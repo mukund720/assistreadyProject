@@ -49,7 +49,9 @@ let new_long = this.lng + coef / Math.cos(this.lat * 0.018);
 this.dest_lat=new_lat
 this.dest_lng=new_long;
 }
- onMapReady(map: any) {
+
+updateMap()
+{
   this.getPosition().then(pos=>
     {
        console.log(`Positon: ${pos.lng} ${pos.lat}`);
@@ -59,6 +61,12 @@ this.dest_lng=new_long;
        this.service_area_lng=pos.lng
     });
 this.getNext5KM();
+setInterval(function(){
+  this.onMapReady()
+}, 30000)
+}
+ onMapReady(map: any) {
+    this.updateMap();
    console.log(map);
    this.map = map;
    // this.calcRoute();
