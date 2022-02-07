@@ -51,6 +51,8 @@ this.dest_lng=new_long;
 locationData=[[this.lat,this.lng],[this.dest_lat,this.dest_lng]]
 this.service_drop_area_lat=this.dest_lat
 this.service_drop_area_lng=this.dest_lng
+console.log(`5km Positon: ${this.dest_lng} ${this.dest_lat}`);
+
 }
 
 updateMap()
