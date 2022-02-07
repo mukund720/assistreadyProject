@@ -1,7 +1,6 @@
 import { Component, VERSION } from '@angular/core';
 import { MouseEvent, AgmMap } from '@agm/core';
 import { TravelMarker, TravelMarkerOptions, TravelData, TravelEvents, EventType } from 'travel-marker';
-var locationData=[]
 declare var google: any;
 
 @Component({
@@ -15,6 +14,7 @@ export class AppComponent  {
   service_drop_area_lat:any='12.97194';
   service_drop_area_lng:any='77.59369';
   customer_data:any={name:'Mukund','mobile':'8677010031','email':'mukund720@gmail.com'}
+  locationData:any=[]
 
  // google maps zoom level
  zoom: number = 15;
@@ -48,7 +48,7 @@ let new_lat = this.lat + coef;
 let new_long = this.lng + coef / Math.cos(this.lat * 0.018);
 this.dest_lat=new_lat
 this.dest_lng=new_long;
-locationData=[[this.lat,this.lng],[this.dest_lat,this.dest_lng]]
+this.locationData=[[this.lat,this.lng],[this.dest_lat,this.dest_lng]]
 this.service_drop_area_lat=this.dest_lat
 this.service_drop_area_lng=this.dest_lng
 console.log(`5km Positon: ${this.dest_lng} ${this.dest_lat}`);
@@ -71,7 +71,7 @@ setInterval(function(){
 }, 30000)
 }
  onMapReady(map: any) {
-   console.log(map);
+   console.log(Object.keys(map));
     this.updateMap();
    console.log(map);
    this.map = map;
@@ -119,7 +119,8 @@ setInterval(function(){
 
  // mock directions api
  mockDirections(is_custom) {
-   const locationArray = locationData.map(l => new google.maps.LatLng(l[0], l[1]));
+   console.log(this.locationData)
+   const locationArray = this.locationData.map(l => new google.maps.LatLng(l[0], l[1]));
    this.line = new google.maps.Polyline({
      strokeOpacity: 0.5,
      path: [],
