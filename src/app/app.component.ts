@@ -22,6 +22,9 @@ export class AppComponent  {
  lat: number = 12.927923;
   lng: number = 77.627106;
 
+  dest_lat: number = 12.927923;
+  dest_lng: number = 77.627106;
+
  map: any;
  line: any;
  directionsService: any;
@@ -29,7 +32,23 @@ export class AppComponent  {
 
  // speedMultiplier to control animation speed
  speedMultiplier = 1;
+getNext5KM()
+{
+  let meters = 50;
 
+// number of km per degree = ~111km (111.32 in google maps, but range varies
+  // between 110.567km at the equator and 111.699km at the poles)
+// 1km in degree = 1 / 111.32km = 0.0089
+// 1m in degree = 0.0089 / 1000 = 0.0000089
+let coef = meters * 0.0000089;
+
+let new_lat = this.lat + coef;
+
+// pi / 180 = 0.018
+let new_long = this.lng + coef / Math.cos(this.lat * 0.018);
+this.dest_lat=new_lat
+this.dest_lng=new_long;
+}
  onMapReady(map: any) {
   this.getPosition().then(pos=>
     {
@@ -39,7 +58,7 @@ export class AppComponent  {
        this.service_area_lat=pos.lat
        this.service_area_lng=pos.lng
     });
-
+this.getNext5KM();
    console.log(map);
    this.map = map;
    // this.calcRoute();
@@ -56,8 +75,8 @@ export class AppComponent  {
      map: this.map
    });
    
-   const start = new google.maps.LatLng(12.916540,77.651950);
-   const end = new google.maps.LatLng(12.9165757,77.61011630000007);
+   const start = new google.maps.LatLng(this.lat,this.lng);
+   const end = new google.maps.LatLng(this.dest_lat,this.dest_lng);
    const request = {
        origin:start,
        destination:end,
@@ -94,8 +113,8 @@ export class AppComponent  {
    });
    locationArray.forEach(l => this.line.getPath().push(l));
  
-   const start = new google.maps.LatLng(is_custom?this.service_area_lat:12.916540,is_custom?this.service_area_lng:77.651950);
-   const end = new google.maps.LatLng(is_custom?this.service_drop_area_lat:12.9165757,is_custom?this.service_drop_area_lng:77.61011630000007);
+   const start = new google.maps.LatLng(this.lat,this.lng);
+   const end = new google.maps.LatLng(this.dest_lat,this.dest_lng);
 
    const startMarker = new google.maps.Marker({position: start, map: this.map, label: 'A'});
    const endMarker = new google.maps.Marker({position: end, map: this.map, label: 'B'});
